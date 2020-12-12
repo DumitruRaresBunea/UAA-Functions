@@ -4,6 +4,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -12,11 +13,12 @@ using UAA_Functions.Models;
 
 namespace UAA_Functions
 {
-    public static class ManufacturersWithMoreThan200Planes
+    public static class NumberOfPlaneAirbus
     {
-        [FunctionName("ManufacturersWithMoreThan200Planes")]
+        [FunctionName("NumberOfPlaneAirbus")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "airplanes/manufacturers")] HttpRequest req, ILogger log)
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "airplanes/airbus")] HttpRequest req,
+            ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -26,14 +28,14 @@ namespace UAA_Functions
             var json = await response.Content.ReadAsStringAsync();
             var list = JsonConvert.DeserializeObject<IEnumerable<Plane>>(json);
 
-            var manufacturers = list.GroupBy(x => x.Manufacturer).Select(x => x.First()).Select(x => x.Manufacturer).ToList();
-            var manufacturersWithMoreTrhan200Planes = new List<PlanesPerManufacturer>();
+            var manufacturers = list.GroupBy(x => x.Model).Select(x => x.First()).ToList();
+            var manufacturersWithMoreTrhan200Planes = new List<PlanesPerManufacturerModel>();
 
             manufacturers.ForEach(manufacturer =>
             {
-                var count = list.Count(x => x.Manufacturer == manufacturer);
-                if (count > 200)
-                    manufacturersWithMoreTrhan200Planes.Add(new PlanesPerManufacturer() { Manufacturer = manufacturer, Count = count });
+                var count = list.Count(x => x.Manufacturer == manufacturer.Manufacturer);
+                if (manufacturer.Manufacturer.Contains("airbus", StringComparison.OrdinalIgnoreCase))
+                    manufacturersWithMoreTrhan200Planes.Add(new PlanesPerManufacturerModel() { Manufacturer = manufacturer.Manufacturer, Model = manufacturer.Model, Count = count });
             });
 
             return new OkObjectResult(manufacturersWithMoreTrhan200Planes);
