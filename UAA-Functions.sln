@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UAA-Functions", "UAA-Functions\UAA-Functions.csproj", "{5696B9F5-E64A-4310-9B78-EE3D836DEB1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5696B9F5-E64A-4310-9B78-EE3D836DEB1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5696B9F5-E64A-4310-9B78-EE3D836DEB1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5696B9F5-E64A-4310-9B78-EE3D836DEB1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5696B9F5-E64A-4310-9B78-EE3D836DEB1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {750BCCA5-48AB-4034-9A3B-95995D731985}
+	EndGlobalSection
+EndGlobal
